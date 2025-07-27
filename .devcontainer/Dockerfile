@@ -70,6 +70,13 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
+# Set zsh as the default shell
+RUN chsh -s "$(command -v zsh)" dev
+
+# dummy .zshrc to avoid zsh-newuser-install
+# real .zshrc will be replaced by chezmoi later
+RUN touch /home/dev/.zshrc && chown dev:dev /home/dev/.zshrc
+
 # Switch to non-root user
 USER $USERNAME
 WORKDIR /home/$USERNAME
