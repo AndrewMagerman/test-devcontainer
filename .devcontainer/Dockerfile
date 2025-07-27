@@ -27,7 +27,7 @@ FROM debian:bookworm
 
 # Install core utilities
 RUN apt-get update && apt-get install -y \
-    git curl zsh sudo locales gnupg ca-certificates \
+    git curl zsh sudo locales gnupg ca-certificates make unzip rg gcc\
     && rm -rf /var/lib/apt/lists/*
 
 # Set up UTF-8 locale
