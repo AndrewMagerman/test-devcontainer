@@ -1,0 +1,8 @@
+{
+  "name": "Dotfiles Test",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "postCreateCommand": "curl -sfL https://git.io/chezmoi | sh -s -- -b ~/.local/bin && ~/.local/bin/chezmoi init --apply https://github.com/AndrewMagerman/.dotfiles.git",
+  "remoteUser": "dev"
+}
