@@ -60,7 +60,18 @@ if [[ "$OS" == "Darwin" && ! $(command -v brew) ]]; then
 fi
 
 install_common_tools
-install_neovim
-# install_chezmoi
+# install_neovim
+install_chezmoi
+
+echo "🎯 Applying dotfiles from public repo..."
+~/.local/bin/chezmoi init --apply https://github.com/AndrewMagerman/.dotfiles.git
+
+echo "✅ Dotfiles applied."
+
+if ! command -v fzf >/dev/null; then
+  echo "📦 Installing fzf..."
+  sudo apt-get update
+  sudo apt-get install -y fzf
+fi
 
 echo "✅ Setup complete!"

@@ -12,13 +12,6 @@ ENV LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
     LC_ALL=en_US.UTF-8
 
-# Set zsh as the default shell
-RUN chsh -s "$(command -v zsh)" dev
-
-# dummy .zshrc to avoid zsh-newuser-install
-# real .zshrc will be replaced by chezmoi later
-RUN touch /home/dev/.zshrc && chown dev:dev /home/dev/.zshrc
-
 # Create non-root user
 ARG USERNAME=dev
 ARG USER_UID=1000
@@ -26,6 +19,14 @@ ARG USER_GID=$USER_UID
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+    # Set zsh as the default shell
+RUN chsh -s "$(command -v zsh)" dev
+
+# dummy .zshrc to avoid zsh-newuser-install
+# real .zshrc will be replaced by chezmoi later
+RUN touch /home/dev/.zshrc && chown dev:dev /home/dev/.zshrc
+
 
 # Switch to non-root user
 USER $USERNAME
