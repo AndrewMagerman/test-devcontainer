@@ -5,5 +5,4 @@
   },
   "postCreateCommand": "/bin/bash .devcontainer/setup.sh",
   "remoteUser": "dev"
-
 }

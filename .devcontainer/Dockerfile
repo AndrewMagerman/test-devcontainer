@@ -27,7 +27,13 @@ RUN chsh -s "$(command -v zsh)" dev
 # real .zshrc will be replaced by chezmoi later
 RUN touch /home/dev/.zshrc && chown dev:dev /home/dev/.zshrc
 
+RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.appimage
+RUN chmod u+x nvim-linux-arm64.appimage 
+RUN ./nvim-linux-arm64.appimage --appimage-extract && \
+    mv squashfs-root /opt/nvim && \
+    ln -s /opt/nvim/usr/bin/nvim /usr/local/bin/nvim
 
+ 
 # Switch to non-root user
 USER $USERNAME
 WORKDIR /home/$USERNAME
