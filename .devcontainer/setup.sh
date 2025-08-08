@@ -65,7 +65,7 @@ install_common_tools
 install_chezmoi
 
 echo "🎯 Applying dotfiles from public repo..."
-~/.local/bin/chezmoi init --apply https://github.com/AndrewMagerman/.dotfiles.git
+~/.local/bin/chezmoi init --apply AndrewMagerman 
 
 echo "✅ Dotfiles applied."
 
