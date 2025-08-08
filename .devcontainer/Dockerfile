@@ -5,6 +5,14 @@ RUN apt-get update && apt-get install -y \
     git curl zsh sudo locales gnupg ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    build-essential clang pkg-config cmake make git curl unzip ca-certificates \
+    python3 python3-venv python3-pip \
+    nodejs npm \
+    ripgrep fd-find \
+ && ln -sf /usr/bin/fdfind /usr/local/bin/fd \
+ && rm -rf /var/lib/apt/lists/*
+
 # Set up UTF-8 locale
 RUN sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
     && locale-gen
