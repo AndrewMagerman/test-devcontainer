@@ -1,12 +1,20 @@
 FROM debian:bookworm
 
 # Install core utilities
-RUN apt-get update && apt-get install -y \
-    git curl zsh sudo locales gnupg ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
-
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    build-essential clang pkg-config cmake make git curl unzip ca-certificates \
+    build-essential \
+    clang \
+    pkg-config \
+    cmake \
+    make \
+    git \
+    curl \
+    zsh \
+    sudo \
+    locales \
+    gnupg \
+    unzip \
+    ca-certificates \
     python3 python3-venv python3-pip \
     nodejs npm \
     ripgrep fd-find \
