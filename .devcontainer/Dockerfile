@@ -17,6 +17,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     ca-certificates \
     python3 python3-venv python3-pip \
     nodejs npm \
+    wget \
     ripgrep fd-find \
  && ln -sf /usr/bin/fdfind /usr/local/bin/fd \
  && rm -rf /var/lib/apt/lists/*
@@ -43,12 +44,18 @@ RUN chsh -s "$(command -v zsh)" dev
 # real .zshrc will be replaced by chezmoi later
 RUN touch /home/dev/.zshrc && chown dev:dev /home/dev/.zshrc
 
+# Install neovim
 RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.appimage
 RUN chmod u+x nvim-linux-arm64.appimage 
 RUN ./nvim-linux-arm64.appimage --appimage-extract && \
     mv squashfs-root /opt/nvim && \
     ln -s /opt/nvim/usr/bin/nvim /usr/local/bin/nvim
 
+# --- Install Deno system-wide (/usr/local/bin/deno) ---
+# Using the official installer, but installing to /usr/local so PATH "just works"
+RUN curl -fsSL https://deno.land/install.sh | DENO_INSTALL=/usr/local sh -s -- -f -q
+# Sanity check (optional)
+RUN deno --version
  
 # Switch to non-root user
 USER $USERNAME
