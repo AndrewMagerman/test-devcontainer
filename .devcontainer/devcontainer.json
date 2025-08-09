@@ -4,5 +4,12 @@
     "dockerfile": "Dockerfile"
   },
   "postCreateCommand": "/bin/bash .devcontainer/setup.sh",
-  "remoteUser": "dev"
+  "remoteUser": "dev",
+  // SSH agent forwarding
+  "mounts": [
+    "source=/run/host-services/ssh-auth.sock,target=/ssh-agent,type=bind"
+  ],
+  "remoteEnv": {
+    "SSH_AUTH_SOCK": "/ssh-agent"
+  }
 }
