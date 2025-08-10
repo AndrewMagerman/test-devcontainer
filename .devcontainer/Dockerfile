@@ -6,6 +6,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     clang \
     pkg-config \
     cmake \
+    clangd \
     make \
     git \
     curl \
