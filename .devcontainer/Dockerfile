@@ -21,6 +21,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     nodejs npm \
     wget \
     ripgrep fd-find \
+    tmux \
  && ln -sf /usr/bin/fdfind /usr/local/bin/fd \
  && rm -rf /var/lib/apt/lists/*
 
