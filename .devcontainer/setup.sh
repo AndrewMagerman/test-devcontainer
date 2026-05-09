@@ -13,8 +13,8 @@ XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 ~/.local/bin/chezmoi init --apply AndrewMagerman
 
 if [[ -f "$HOME/.tmux.conf" && -x "$XDG_DATA_HOME/tmux/plugins/tpm/bin/install_plugins" ]]; then
+    "$XDG_DATA_HOME/tmux/plugins/tpm/bin/install_plugins"
     tmux start-server
     tmux source-file "$HOME/.tmux.conf"
-    "$XDG_DATA_HOME/tmux/plugins/tpm/bin/install_plugins"
     tmux kill-server >/dev/null 2>&1 || true
 fi
