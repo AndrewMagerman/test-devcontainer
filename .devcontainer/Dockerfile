@@ -13,6 +13,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     unzip \
     ca-certificates \
     wget \
+    python3 \
+    python3-venv \
     ripgrep fd-find \
     tree \
     tmux \
@@ -49,6 +51,13 @@ RUN case "$TARGETARCH" in \
     && mv squashfs-root /opt/nvim \
     && rm -f /tmp/nvim.appimage \
     && ln -s /opt/nvim/usr/bin/nvim /usr/local/bin/nvim
+
+RUN python3 -m venv /opt/python-tools \
+    && /opt/python-tools/bin/pip install --upgrade pip \
+    && /opt/python-tools/bin/pip install basedpyright ruff \
+    && ln -s /opt/python-tools/bin/basedpyright /usr/local/bin/basedpyright \
+    && ln -s /opt/python-tools/bin/basedpyright-langserver /usr/local/bin/basedpyright-langserver \
+    && ln -s /opt/python-tools/bin/ruff /usr/local/bin/ruff
  
 USER $USERNAME
 RUN mkdir -p /home/$USERNAME/.local/share \
