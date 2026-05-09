@@ -8,7 +8,7 @@ install_chezmoi() {
 
 install_chezmoi
 export PATH="$HOME/.local/bin:$PATH"
-XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 
 ~/.local/bin/chezmoi init --apply AndrewMagerman
 
