@@ -49,4 +49,7 @@ RUN case "$TARGETARCH" in \
     && ln -s /opt/nvim/usr/bin/nvim /usr/local/bin/nvim
  
 USER $USERNAME
+RUN mkdir -p /home/$USERNAME/.local/share \
+    && git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git /home/$USERNAME/.local/share/oh-my-zsh \
+    && git clone --depth 1 https://github.com/pyenv/pyenv.git /home/$USERNAME/.pyenv
 WORKDIR /home/$USERNAME
