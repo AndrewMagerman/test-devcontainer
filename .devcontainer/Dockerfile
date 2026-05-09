@@ -13,6 +13,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     unzip \
     ca-certificates \
     wget \
+    build-essential \
     python3 \
     python3-venv \
     ripgrep fd-find \
