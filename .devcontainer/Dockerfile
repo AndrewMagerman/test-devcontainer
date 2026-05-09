@@ -4,6 +4,7 @@ ARG NVIM_VERSION=v0.12.0
 ARG TARGETARCH
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    bc \
     git \
     curl \
     zsh \
@@ -51,5 +52,7 @@ RUN case "$TARGETARCH" in \
 USER $USERNAME
 RUN mkdir -p /home/$USERNAME/.local/share \
     && git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git /home/$USERNAME/.local/share/oh-my-zsh \
-    && git clone --depth 1 https://github.com/pyenv/pyenv.git /home/$USERNAME/.pyenv
+    && git clone --depth 1 https://github.com/pyenv/pyenv.git /home/$USERNAME/.pyenv \
+    && mkdir -p /home/$USERNAME/.local/share/tmux/plugins \
+    && git clone --depth 1 https://github.com/tmux-plugins/tpm.git /home/$USERNAME/.local/share/tmux/plugins/tpm
 WORKDIR /home/$USERNAME
