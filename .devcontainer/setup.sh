@@ -12,7 +12,7 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 
 ~/.local/bin/chezmoi init --apply AndrewMagerman
 
-nvim --headless '+TSInstallSync bash lua markdown markdown_inline python query toml vim vimdoc' '+qa'
+nvim --headless '+TSInstallSync bash c lua markdown markdown_inline python query toml vim vimdoc' '+qa'
 
 if [[ -f "$HOME/.tmux.conf" && -x "$XDG_DATA_HOME/tmux/plugins/tpm/bin/install_plugins" ]]; then
     "$XDG_DATA_HOME/tmux/plugins/tpm/bin/install_plugins"
